@@ -1,51 +1,53 @@
+const name = document.querySelector('.name');
+const email = document.querySelector('.email');
+const firstpassword = document.querySelector('.password1');
+const secondpassword = document.querySelector('.password2');
+const textName = document.querySelector('.nameText');
+const textEmail = document.querySelector('.emailText');
+const textPassword = document.querySelector('.passwordText');
+const textPassword2 = document.querySelector('.passwordText2');
+const regex = /^[a-z0-9]+$/
+const checkChar = regex.test(document.querySelector(".password1").value);
+const button = document.querySelector('button');
+const popup = document.querySelector(".popup");
+const closeButton = document.querySelector(".close-button");
 
-const name = document.querySelector('.name')
-const email = document.querySelector('.email')
-let error = document.querySelector('.error')
-const firstpassword = document.querySelector('.password1') 
-const secondpassword = document.querySelector('.password2') 
-const textName = document.querySelector('.nameText') 
-const textEmail = document.querySelector('.emailText') 
-const textPassword = document.querySelector('.passwordText') 
+button.addEventListener('click', validateForm);
+closeButton.addEventListener("click", toggleModal);
 
-const button = document.querySelector('button')
-button.addEventListener('click', checkForm)
-
-
-function checkForm(){ 
-    if (name.value.length < 3){  
-        textName.innerText = ("Name must be at least 3 characters long..");
-        return false;
-    } 
-    // else{
-    //     textName.innerText = ("");
-    // }
-
-    else if (email.value.indexOf('@') == -1 ||
-        email.value.indexOf('.') == -1) {
-        textEmail.innerText = ('Insert a valid email..');
-    }
-    // else{
-    //     textEmail.innerText = ('');
-    // }
-    else if (firstpassword.value !== secondpassword.value){  
-        textPassword.innerText = ('password doesnt match'); 
-
-        }  
-    else{  
-        textPassword.innerText = ('');
-        }  
-        window.confirm('you are registrered'); 
+function toggleModal() {
+  popup.classList.toggle("show-confirm");
 }
-    {
+
+function validateForm() {
+  let formValidated = true;
+  [textName, textEmail, textPassword, textPassword2].forEach(errorText => {
+    errorText.innerText = '';
+  });
+  if (name.value.length < 3) {
+    textName.innerText = 'Name must be at least 3 characters long';
+    formValidated = false;
+    return;
+  }
+  if (email.value.indexOf('@') == -1 || email.value.indexOf('.') == -1) {
+    textEmail.innerText = 'Insert a valid email.';
+    formValidated = false;
+    return;
+  }
+   
+  if (firstpassword.value.length <= 8 && !checkChar) {
+    textPassword.innerText = 'Password must contant at least 8 characters and one lowercase';
+    formValidated = false;
+    return;
   }
 
-//   if (condition a) {
-//     // code that will execute if condition a is true
-// } else if (condition b) {
-//     // code that will execute if condition b is true
-// } else if (condition c) {
-//     // code that will execute if condition c is true
-// } else {
-//     // code that will execute if all above conditions are false
-// }
+  if (firstpassword.value !== secondpassword.value) {
+    textPassword2.innerText = 'Passwords do not match';
+    formValidated = false;
+    return;
+  }
+  if (formValidated) {
+    toggleModal()
+  }
+}
+

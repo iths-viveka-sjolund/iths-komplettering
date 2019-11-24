@@ -8,22 +8,28 @@
     <title>Registeringsformulär</title>
 </head>
 <body>
-    <form>
-        
-        <input type="text" class="name" placeholder="Username">
-        <p class="nameText"></p>
-        <input type="text" class="email" placeholder="E-mail">
-        <p class="emailText"></p>
-        <input type="password" class="password1" placeholder="Password">
-        <input type="password" class="password2" placeholder="Repeat password">
-        <p class="passwordText"></p>
-    </form>
-    <button>Register</button>
+    <section>
+        <article class="form-bg">
+            <form>
+                <input type="text" class="name" placeholder="Username">
+                <p class="nameText"></p>
+                <input type="text" class="email" placeholder="E-mail">
+                <p class="emailText"></p>
+                <input type="password" class="password1" placeholder="Password">
+                <p class="passwordText"></p>
+                <input type="password" class="password2" placeholder="Repeat password">
+                <p class="passwordText2"></p>
+            </form>
+            <button>Register</button>
+        </article>
 
-    <article>
-        <p class="error"></p>
-</article>
-
+    <article class="popup">
+            <div class="registration-confirm">
+                <div class="close-button">×</div>
+                <h1>Registration successful!</h1>
+            </div>
+    </article>
+    </section>
     
 
     <script src="form.js"></script>
